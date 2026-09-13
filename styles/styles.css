@@ -87,13 +87,10 @@ div.repl-tree.monaco-mouse-cursor-text.word-wrap {
     border-radius: var(--border-radius);
     overflow: hidden;
     height: calc(100% - var(--spacing)) !important;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    box-shadow: none;
 }
 
-.monaco-split-view2.separator-border.vertical>.monaco-scrollable-element>.split-view-container>.split-view-view:not(:first-child):before {
-    background: var(--vscode-panel-border, #252a38) !important;
-}
-
+.monaco-split-view2.separator-border.vertical>.monaco-scrollable-element>.split-view-container>.split-view-view:not(:first-child):before,
 .monaco-split-view2.separator-border>.monaco-scrollable-element>.split-view-container>.split-view-view:not(:first-child):before {
     background: var(--vscode-panel-border, #252a38) !important;
 }
@@ -174,7 +171,6 @@ div.pane-body>div>div>div>div.monaco-list-rows {
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     width: 97% !important;
     padding-bottom: 0.5rem;
-    /* height: calc(100% - 1rem) !important; */
 }
 
 li.action-item.icon {
@@ -204,7 +200,7 @@ li.action-item.icon {
     border-right: unset !important;
     outline-color: unset !important;
     height: calc(100% - var(--spacing)) !important;
-    box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 6px, rgba(0, 0, 0, 0.23) 3px 3px 6px;
+    box-shadow: none;
 }
 
 .monaco-workbench .pane-composite-part>.header-or-footer>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.checked .active-item-indicator:before,
@@ -250,16 +246,12 @@ div .search-view .search-widget .replace-input {
     z-index: 100;
     border: solid 2px var(--vscode-widget-border, #ffffff2d) !important;
     border-radius: 12px !important;
-    box-shadow: none !important;
     font-size: 24px !important;
     box-shadow: 0px 8px 20px var(--vscode-widget-shadow, #0000005c) !important;
 }
 
 .quick-input-widget .monaco-list-rows {
     font-size: 13px !important;
-}
-
-.quick-input-widget .monaco-list-rows {
     background: transparent !important;
 }
 
@@ -292,7 +284,6 @@ div .search-view .search-widget .replace-input {
 .notification-toast,
 .notification-toast>.notifications-list-container,
 .notification-toast>.notifications-list-container>.monaco-list,
-.notification-toast>.notifications-list-container>.monaco-list,
 .monaco-scrollable-element,
 .monaco-button,
 .notifications-center.visible,
@@ -310,7 +301,7 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
 }
 
 .monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container {
-    margin: var(--border-radius) var(--border-radius) 0 var(--border-radius);
+    margin: 0 !important;
 }
 
 .monaco-icon-label:after {
@@ -336,7 +327,7 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     border-radius: var(--border-radius) !important;
     margin-right: var(--spacing) !important;
     height: calc(100% - var(--spacing)) !important;
-    box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 6px, rgba(0, 0, 0, 0.23) -3px 3px 6px;
+    box-shadow: none;
 }
 
 .part.statusbar {
@@ -353,7 +344,7 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    box-shadow: none;
     border-right: 2px solid var(--vscode-terminal-background, #171b2600) !important;
 }
 
@@ -384,4 +375,94 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
 .split-view-view.visible,
 .split-view-container {
     background: var(--vscode-activityBar-background, #171b26) !important;
+}
+
+/* ===== YJA — Personnalisation des icônes de la barre d'activité (position haute) ===== */
+
+/* Taille du conteneur de chaque icône */
+.modern-ui-tabs .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon {
+    flex: 0 0 36px !important;
+    width: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+    padding: 0 6px !important;
+}
+
+/* Icônes natives (codicons) : taille + couleur par défaut (orange sourd) */
+.modern-ui .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .action-label.codicon {
+    font-size: 24px !important;
+    line-height: 24px !important;
+    color: #e08a3c !important;
+}
+
+/* Icônes d'extensions (masque SVG) : taille + couleur par défaut (orange sourd) */
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .action-label:not(.codicon) {
+    width: 24px !important;
+    height: 24px !important;
+    background-size: 24px !important;
+    -webkit-mask-size: 24px !important;
+    mask-size: 24px !important;
+    background-position: center !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    background-color: #e08a3c !important;
+}
+
+/* Icône active (onglet sélectionné) ou survolée : orange vif */
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked .action-label.codicon,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon[aria-selected="true"] .action-label.codicon,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover .action-label.codicon {
+    color: #ff6a00 !important;
+}
+
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked .action-label:not(.codicon),
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon[aria-selected="true"] .action-label:not(.codicon),
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover .action-label:not(.codicon) {
+    background-color: #ff6a00 !important;
+}
+
+/* Survol : même orange vif, avec la spécificité de la règle native pour être sûr de gagner */
+.modern-ui-tabs .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:not(.checked):not(:active):hover>.action-label.codicon {
+    color: #ff6a00 !important;
+}
+
+.modern-ui-tabs .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:not(.checked):not(:active):hover>.action-label:not(.codicon) {
+    background-color: #ff6a00 !important;
+}
+
+/* Suppression de tout fond au survol/actif */
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon[aria-selected="true"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    --insert-border-color: transparent !important;
+}
+
+/* Neutraliser le fond de l'indicateur d'onglet actif — même spécificité que la règle native */
+.modern-ui-tabs.monaco-workbench:not(.hc-black):not(.hc-light) .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container:not(.dragged-over):not(.dragged-over-head):not(.dragged-over-tail)>.composite-bar>.monaco-action-bar .action-item.icon.checked:not(:active)>.active-item-indicator {
+    background-color: transparent !important;
+}
+
+/* ===== YJA — Éditeur en mode "floating panels" ===== */
+
+/* Supprime la marge autour de l'éditeur flottant */
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-right,
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-top,
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-bottom,
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-left {
+    margin: 0 !important;
+}
+
+/* Retire la bordure translucide autour de l'éditeur (coins arrondis conservés) */
+.modern-ui .monaco-grid-view .part.editor:not(.modal-editor-part) {
+    border: none !important;
+}
+
+/* Cache les ombres natives de défilement */
+.monaco-workbench .part.editor .shadow {
+    display: none !important;
 }

@@ -4,6 +4,18 @@ All notable changes to the VS Code Modernized extension will be documented in th
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.0] - 2026-09-12
+
+### Rebuild
+
+- Rebuild by Y. Janolin
+- New icon size for Activity Bar
+- Removing of the wrong shadow color for icons in Activity Bar
+- New icon color for Activity Bar
+- Container's shadow removal
+- Added missing rounded corner
+- New line numbers colors
+
 ## [v1.1.1] - 2026-07-06
 
 ### Added

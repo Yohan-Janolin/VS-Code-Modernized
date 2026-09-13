@@ -4,7 +4,7 @@
 [![Downloads](https://vsmarketplacebadges.dev/downloads-short/sukarth.vscode-modernized.svg)](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized)
 [![Rating](https://vsmarketplacebadges.dev/rating-short/sukarth.vscode-modernized.svg)](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized&ssr=false#review-details)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/sukarth/VS-Code-Modernized)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Yohan-Janolin/VS-Code-Modernized)
 
 **Elevate your Visual Studio Code experience!**
 VS Code Modernized applies a sleek, custom UI redesign, going beyond standard themes by offering customizable spacing, rounded corners, and a refined dark aesthetic. By applying custom CSS and JavaScript, it provides a more polished and visually appealing development environment.
@@ -15,7 +15,7 @@ VS Code Modernized applies a sleek, custom UI redesign, going beyond standard th
 - Includes the 'Deep Blue Modern' theme, which is applied by default for the best visual experience.
 - Enhances the command palette appearance and behavior to match the modern theme.
 - Provides commands to easily enable or disable the custom styles.
-- **Completely Open Source:** Available on GitHub under the MIT license. Feel free to explore the code, contribute, or report issues on our [GitHub repository](https://github.com/sukarth/VS-Code-Modernized).
+- **Completely Open Source:** Available on GitHub under the MIT license. Feel free to explore the code, contribute, or report issues on our [GitHub repository](https://github.com/Yohan-Janolin/VS-Code-Modernized).
 
 ## Preview
 
@@ -36,7 +36,7 @@ Or, disable the default behavior using the `vscode-modernized.autoApplyTheme` se
     <!-- *   *(Optional but Recommended)* Install the [Geist Mono](https://vercel.com/font/mono) font for the intended look. -->
 2.  **Install the Extension:**
     - **From VS Code Marketplace (Recommended):** Search for "VS Code Modernized" and install directly from VS Code, or use [this link](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized) to install the extension from the marketplace.
-    - **From VSIX (Manual):** Download the `.vsix` file from the [Releases](https://github.com/sukarth/VS-Code-Modernized/releases) page. Open VS Code, go to the Extensions view (`Ctrl+Shift+X`), click the `...` menu, select "Install from VSIX...", and choose the downloaded file.
+    - **From VSIX (Manual):** Download the `.vsix` file from the [Releases](https://github.com/Yohan-Janolin/VS-Code-Modernized/releases) page. Open VS Code, go to the Extensions view (`Ctrl+Shift+X`), click the `...` menu, select "Install from VSIX...", and choose the downloaded file.
     - **⚠️ Note:** If you uninstall this extension later, you MUST run the `VS Code Modernized: Remove Styles` command first. See the [important note](#%EF%B8%8F-important-note) section for details.
 3.  **Apply Styles:**
     - Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
@@ -106,15 +106,15 @@ This extension modifies VS Code's files (mainly `workbench.html`) to apply/injec
 - **Q: Styles didn't apply after running the command.**
   - A: Ensure you granted administrative privileges if prompted. Try restarting VS Code completely or reloading the window (`Ctrl + R`).
 - **Q: The extension broke after a VS Code update.**
-  - A: This is possible, as the styles injection method is not officially supported. Try running `VS Code Modernized: Remove Styles`, then `VS Code Modernized: Apply Styles` again. If it still fails, please [open an issue](https://github.com/sukarth/VS-Code-Modernized/issues).
+  - A: This is possible, as the styles injection method is not officially supported. Try running `VS Code Modernized: Remove Styles`, then `VS Code Modernized: Apply Styles` again. If it still fails, please [open an issue](https://github.com/Yohan-Janolin/VS-Code-Modernized/issues).
 
 ## Contributing
 
-Contributions, feedback, and bug reports are welcome! Please feel free to open an issue, provide feature suggestions/improvements, or submit a pull request on the [GitHub repository](https://github.com/sukarth/VS-Code-Modernized).
+Contributions, feedback, and bug reports are welcome! Please feel free to open an issue, provide feature suggestions/improvements, or submit a pull request on the [GitHub repository](https://github.com/Yohan-Janolin/VS-Code-Modernized).
 
 ### Bug Reports & Feature Requests
 
-- Use the [GitHub Issues](https://github.com/sukarth/VS-Code-Modernized/issues) page.
+- Use the [GitHub Issues](https://github.com/Yohan-Janolin/VS-Code-Modernized/issues) page.
 - For bugs, please include:
   - Your VS Code version (`Help > About`).
   - Your Operating System.
@@ -124,7 +124,7 @@ Contributions, feedback, and bug reports are welcome! Please feel free to open a
 
 ### Development
 
-1.  Clone the repository: `git clone https://github.com/sukarth/VS-Code-Modernized.git`
+1.  Clone the repository: `git clone https://github.com/Yohan-Janolin/VS-Code-Modernized.git`
 2.  Navigate to the directory: `cd VS-Code-Modernized`
 3.  Install dependencies: `npm install`
 4.  Open the project in VS Code.
@@ -141,12 +141,12 @@ This project is licensed under the [MIT License](LICENSE).
 
 If this project saves you time, consider supporting my work, as it keeps these tools free, open source, and maintained:
 
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/Sukarth)
-[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?logo=kofi&logoColor=white)](https://ko-fi.com/sukarth)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕-FFDD00?logoColor=black)](https://buymeacoffee.com/sukarth)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/Yohan-Janolin)
 
 Can't donate? Starring the repo ⭐, reporting bugs, and sharing the project help just as much!
 
 ---
 
-Made with ❤️ by Sukarth Acharya
+Original release built with ❤️ by Sukarth Acharya
+
+V2 release by Yohan Janolin
