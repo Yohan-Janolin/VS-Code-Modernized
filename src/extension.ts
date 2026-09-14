@@ -16,7 +16,7 @@ const PREVIOUS_THEME_KEY = 'previousTheme';
 /** Key used in global state to track if styles have been successfully applied. */
 const APPLIED_STATE_KEY = 'stylesApplied';
 /** GitHub Sponsors URL. */
-const SPONSOR_URL = 'https://github.com/sponsors/Sukarth';
+const SPONSOR_URL = 'https://github.com/sponsors/Yohan-Janolin';
 /** Key: sponsor prompt permanently dismissed or acted upon. */
 const SPONSOR_PROMPT_DONE_KEY = 'sponsorPromptDone';
 /** Key: timestamp (ms) before which the sponsor prompt is snoozed. */

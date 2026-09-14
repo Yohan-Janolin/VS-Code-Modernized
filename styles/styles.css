@@ -203,10 +203,10 @@ li.action-item.icon {
 .monaco-workbench .part.sidebar {
     margin: 0 0 0 var(--spacing);
     border-radius: var(--border-radius);
+    overflow: hidden !important;
     border-right: unset !important;
     outline-color: unset !important;
     height: calc(100% - var(--spacing)) !important;
-    /* box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 6px, rgba(0, 0, 0, 0.23) 3px 3px 6px; */
     box-shadow: none;
 }
 
@@ -338,10 +338,9 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
 .monaco-workbench .part.auxiliarybar {
     border: none !important;
     border-radius: var(--border-radius) !important;
+    margin-left: var(--spacing) !important;
     margin-right: var(--spacing) !important;
-    /* margin-right: 0 !important; */
     height: calc(100% - var(--spacing)) !important;
-    /* box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 6px, rgba(0, 0, 0, 0.23) -3px 3px 6px; */
     box-shadow: none;
 }
 
@@ -354,12 +353,11 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
 }
 
 .monaco-workbench .part.panel {
-    margin: 0 var(--spacing) 0 0;
-    height: calc(100% - calc(var(--spacing) + 0.1rem)) !important;
+    margin: 0 var(--spacing) var(--spacing) 0;
+    height: calc(100% - calc(var(--spacing) * 2 + 0.1rem)) !important;
     border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
-    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
     box-shadow: none;
     border-right: 2px solid var(--vscode-terminal-background, #171b2600) !important;
 }
@@ -493,6 +491,7 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
 }
 .modern-ui .monaco-grid-view .part.editor:not(.modal-editor-part) {
     border: none !important;
+    background-color: #171b26 !important;
 }
 .monaco-workbench .part.editor .shadow {
     display: none !important;
@@ -504,4 +503,59 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
 
 .monaco-workbench .pane-composite-part>.header-or-footer {
     background: #171b26 !important;
+}
+
+/* Espace visible (comme entre l'explorateur et l'éditeur) sous la rangée d'icônes */
+/* Fond clair de la barre latérale (visible dans l'espace entre les deux zones) */
+.modern-ui-tabs.monaco-workbench.floating-panels .part.sidebar {
+    background-color: var(--vscode-activityBar-background, #252a38) !important;
+}
+
+/* Rangée d'icônes : fond sombre, coins arrondis en bas, espace en dessous */
+.monaco-workbench .pane-composite-part>.header-or-footer {
+    background: var(--vscode-sideBar-background, #171b26) !important;
+    border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+    overflow: hidden !important;
+}
+
+/* Contenu de l'explorateur : fond sombre, coins arrondis en haut ET en bas */
+.monaco-workbench .part.sidebar>.content {
+    background: var(--vscode-sideBar-background, #171b26) !important;
+    border-radius: var(--border-radius) !important;
+    overflow: hidden !important;
+}
+
+/* Coins arrondis pour l'éditeur */
+.editor-container {
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    overflow: hidden !important;
+}
+
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-and-actions-container {
+    width: 100% !important;
+}
+
+/* Bug affichage à droite */
+#workbench\.parts\.editor>.content {
+    background-color: unset !important;
+    width: 100% !important;
+}
+.split-view-view.visible:has(>.part.editor) {
+    background: #252a38 !important;
+}
+
+/* Marge de base (haut, gauche, droite) du panneau */
+.monaco-workbench.floating-panels .part.panel {
+    margin: var(--spacing) var(--spacing) var(--spacing) var(--spacing) !important;
+}
+
+/* Cette règle plus spécifique ne fixe QUE le haut — on l'égale pour garder la cohérence */
+.monaco-workbench.floating-panels.panel-position-bottom:not(.nomaineditorarea).part.panel.bottom {
+    margin-top: var(--spacing) !important;
+}
+
+.monaco-workbench {
+    --modern-ui-floating-card-margin: var(--spacing) !important;
+    --modern-ui-floating-card-inner-margin: var(--spacing) !important;
+    --modern-ui-floating-card-outer-margin: var(--spacing) !important;
 }
