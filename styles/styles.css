@@ -1,9 +1,17 @@
+/* ============================================================
+   CSS custom properties (design tokens)
+   ============================================================ */
 :root {
     --spacing: 0.35rem;
     --border-radius: 0.5rem;
     --tab-spacing: 0.2rem;
 }
 
+/* ============================================================
+   Editor tabs — label styling
+   ============================================================ */
+
+/* Tab label text: always use the "active" foreground color, even on inactive tabs */
 .monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-label {
     line-height: 32px !important;
     color: var(--vscode-tab-activeForeground, #ffffff) !important;
@@ -13,6 +21,7 @@
     color: var(--vscode-tab-activeForeground, #ffffff) !important;
 }
 
+/* Individual tab shape: rounded pill with its own border, spaced from neighbours */
 .monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab {
     border-radius: var(--border-radius);
     background-color: var(--vscode-tab-inactiveBackground, #171b26) !important;
@@ -20,46 +29,66 @@
     margin: 0 var(--tab-spacing) 0 var(--tab-spacing);
 }
 
-.tab-border-bottom-container,
-.tab-border-top-container {
-    background: none !important;
-}
-
-div.repl-tree.monaco-mouse-cursor-text.word-wrap {
-    overflow: hidden !important;
-}
-
-.repl:has(div.repl-tree.monaco-mouse-cursor-text.word-wrap) {
-    display: flex !important;
-    flex-direction: column !important;
-}
-
-.split-view-view>.monaco-grid-branch-node>.monaco-split-view2.vertical:has(#workbench\.parts\.editor) {
-    width: calc(100% - var(--spacing)) !important;
-}
-
-.monaco-split-view2.horizontal>.monaco-scrollable-element>.split-view-container>.split-view-view:has(#workbench\.parts\.editor) {
-    margin-left: var(--spacing);
-}
-
-
+/* Active tab: distinct background + border */
 .monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab.active {
     background-color: var(--vscode-list-hoverBackground, #343b4d) !important;
     border: 2px solid var(--vscode-tab-activeBorder, #ffffffc4) !important;
 }
 
+/* Remove native top/bottom border-indicator strips on tabs (we draw our own pill border instead) */
+.tab-border-bottom-container,
+.tab-border-top-container {
+    background: none !important;
+}
+
+/* Tab strip: no outer margin (tabs sit flush; spacing is handled by the pill margin above) */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container {
+    margin: 0 !important;
+}
+
+/* Space between the tab strip and the editor content below it */
+.monaco-workbench .part.editor>.content .editor-group-container>.title {
+    margin-bottom: var(--spacing) !important;
+}
+
+/* Was an early attempt at fixing a rendering glitch on the right edge of the tab strip.
+   The real fix turned out to be the #workbench\.parts\.editor>.content width rule further
+   below. Keeping this — it's harmless and removing it is unconfirmed to be safe. */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-and-actions-container {
+    width: 100% !important;
+}
+
+/* NOTE: malformed selector from the original file (trailing '>' with no target) — left
+   as-is since its effect is unclear and removing it is unconfirmed to be safe. */
 .monaco-workbench .part.editor>.content .editor-group-container> {
     border: 2px solid var(--vscode-editorGroup-border, #243443) !important;
 }
 
-.breadcrumbs-below-tabs {
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+/* ============================================================
+   Editor group container (the box holding tabs + code area)
+   ============================================================ */
+.editor-group-container,
+.monaco-workbench .part.editor>.content .editor-group-container {
+    border-radius: var(--border-radius);
     overflow: hidden;
-    padding: 5px 0 0 0;
+    height: calc(100% - var(--spacing)) !important;
+    box-shadow: none;
 }
 
-.monaco-breadcrumbs {
-    font-size: 0.7rem;
+/* Rounds the top corners of the inner editor content wrapper (bottom corners were already
+   rounded natively; only the top ones needed this). */
+.editor-container {
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    overflow: hidden !important;
+}
+
+.monaco-editor {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    overflow: hidden;
+}
+
+.monaco-editor-background {
+    border-radius: var(--border-radius);
 }
 
 .monaco-editor .sticky-widget {
@@ -70,6 +99,90 @@ div.repl-tree.monaco-mouse-cursor-text.word-wrap {
     box-shadow: none;
 }
 
+.monaco-editor .find-widget {
+    top: 12px !important;
+    border-radius: var(--border-radius) !important;
+}
+
+/* ============================================================
+   Editor column sizing (native VS Code layout, unrelated to
+   the "floating panels" mode below)
+   ============================================================ */
+.split-view-view>.monaco-grid-branch-node>.monaco-split-view2.vertical:has(#workbench\.parts\.editor) {
+    width: calc(100% - var(--spacing)) !important;
+}
+
+.monaco-split-view2.horizontal>.monaco-scrollable-element>.split-view-container>.split-view-view:has(#workbench\.parts\.editor) {
+    margin-left: var(--spacing);
+}
+
+/* THE key fix for the long-standing corner/seam rendering bug: this element was narrower
+   than its parent by --spacing, letting the parent's background peek through at the
+   rounded corner. Forcing full width removes the gap entirely. */
+#workbench\.parts\.editor>.content {
+    background-color: unset !important;
+    width: 100% !important;
+}
+
+/* Paints the parent wrapper the same light "shell" color that shows in the gaps between
+   floating panels (measured directly on-screen: #252a38). Matches the editor's own
+   rounded-corner background so no seam is visible if any sub-pixel gap remains. */
+.split-view-view.visible:has(>.part.editor) {
+    background: #252a38 !important;
+}
+
+/* Match the split-view-view's flex height to the spacing convention used elsewhere */
+.split-view-view.visible:has(#workbench\.parts\.editor) {
+    height: calc(100% - var(--spacing)) !important;
+}
+
+.split-view-view.visible,
+.split-view-container {
+    background: var(--vscode-activityBar-background, #171b26) !important;
+}
+
+/* ============================================================
+   "Floating panels" mode — border & margin fixes
+   ============================================================ */
+
+/* Remove the outer margin the floating-panels mode adds around the editor part
+   (we handle spacing ourselves via the rules above instead). */
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-right,
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-top,
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-bottom,
+.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-left {
+    margin: 0 !important;
+}
+
+/* Remove the translucent native border around the editor (rounded corners are kept),
+   and match its background to the editor color (same specificity as the native rule
+   so this reliably wins). */
+.modern-ui .monaco-grid-view .part.editor:not(.modal-editor-part) {
+    border: none !important;
+    background-color: #171b26 !important;
+}
+
+/* Hide the native "can scroll further" shadow overlays inside the editor part —
+   they read as a stray dark smudge against this theme's rounded corners. */
+.monaco-workbench .part.editor .shadow {
+    display: none !important;
+}
+
+/* ============================================================
+   Repl / debug console layout
+   ============================================================ */
+div.repl-tree.monaco-mouse-cursor-text.word-wrap {
+    overflow: hidden !important;
+}
+
+.repl:has(div.repl-tree.monaco-mouse-cursor-text.word-wrap) {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* ============================================================
+   Search-results / generic lists
+   ============================================================ */
 .results>.monaco-list>.monaco-scrollable-element,
 .results>.monaco-list>.monaco-scrollable-element>.monaco-list-rows {
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
@@ -79,48 +192,164 @@ div.repl-tree.monaco-mouse-cursor-text.word-wrap {
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
-.extensions-viewlet>.extensions .message-container {
-    padding: unset !important;
-}
-
-.editor-group-container,
-.monaco-workbench .part.editor>.content .editor-group-container {
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    height: calc(100% - var(--spacing)) !important;
-    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
-    box-shadow: none;
-}
-
-.monaco-split-view2.separator-border.vertical>.monaco-scrollable-element>.split-view-container>.split-view-view:not(:first-child):before {
-    background: var(--vscode-panel-border, #252a38) !important;
-}
-
-.monaco-split-view2.separator-border>.monaco-scrollable-element>.split-view-container>.split-view-view:not(:first-child):before {
-    background: var(--vscode-panel-border, #252a38) !important;
-}
-
-.welcome-view-content {
-    background: var(--vscode-editor-background, #171b26) !important;
+div.pane-body>div>div>div>div.monaco-list-rows {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    width: 97% !important;
+    padding-bottom: 0.5rem;
 }
 
 div.monaco-scrollable-element>div.split-view-container>div>div>div.pane-body {
     background: var(--vscode-sideBar-background, #171b26) !important;
 }
 
+.monaco-pane-view .pane>.pane-header {
+    padding: 0 6px;
+}
+
+.extensions-viewlet>.extensions .message-container {
+    padding: unset !important;
+}
+
+.welcome-view-content {
+    background: var(--vscode-editor-background, #171b26) !important;
+}
+
+/* ============================================================
+   Sidebar / Explorer
+   ============================================================ */
+
+/* Rounded-card look, kept clear of the surrounding "shell" background */
+.monaco-workbench .part.sidebar {
+    margin: 0 0 0 var(--spacing);
+    border-radius: var(--border-radius);
+    overflow: hidden !important;
+    border-right: unset !important;
+    outline-color: unset !important;
+    height: calc(100% - var(--spacing)) !important;
+    box-shadow: none;
+}
+
+.monaco-workbench .part.sidebar>.title {
+    background: transparent;
+    padding: var(--spacing) 0 0 0;
+}
+
 #workbench\.parts\.sidebar>.content {
     width: auto !important;
 }
 
-#workbench\.parts\.editor>.content {
+/* Sidebar's own content (the file tree area): dark background + rounded corners on all
+   sides, so it reads as a distinct "card" floating inside the lighter sidebar shell. */
+.monaco-workbench .part.sidebar>.content {
+    background: var(--vscode-sideBar-background, #171b26) !important;
+    border-radius: var(--border-radius) !important;
+    overflow: hidden !important;
+}
+
+/* Right/bottom margin for the sidebar, matched to the native "floating-panels" rule's
+   specificity so it reliably wins (default native values were 0px / 4px). */
+.monaco-workbench.floating-panels .part.sidebar {
+    margin-right: var(--spacing) !important;
+    margin-bottom: var(--spacing) !important;
+}
+
+/* The lighter "shell" color of the sidebar wrapper itself, visible in the gap around
+   the darker content card above. */
+.modern-ui-tabs.monaco-workbench.floating-panels .part.sidebar {
+    background-color: var(--vscode-activityBar-background, #252a38) !important;
+}
+
+/* ============================================================
+   Auxiliary bar (chat panel)
+   ============================================================ */
+.monaco-workbench .part.auxiliarybar>.title {
     background-color: unset !important;
-    width: calc(100% - var(--spacing)) !important;
+}
+
+.monaco-workbench .part.auxiliarybar {
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    margin-left: calc(var(--spacing) * 2) !important;
+    margin-right: calc(var(--spacing) * 2) !important;
+    height: calc(100% - calc(var(--spacing) * 2)) !important;
+    box-shadow: none;
+}
+
+/* Cancels an equal-specificity native rule that was adding a second, redundant left
+   margin on top of the one above (was doubling the gap on one side only). */
+.split-view-view.visible:has(>.part.auxiliarybar) {
+    margin-left: 0 !important;
+}
+
+/* Remove the native background color on the auxiliarybar (chat) so it shows
+   whatever is behind it, matched to the native rule's exact specificity */
+.modern-ui.floating-panels :is(.part.sidebar,.part.auxiliarybar) {
+    background-color: transparent !important;
+}
+
+/* ============================================================
+   Panel (terminal / problems / output)
+   ============================================================ */
+.monaco-workbench .part.panel>.content {
+    height: calc(100% - 2rem) !important;
+}
+
+.monaco-workbench .part.panel {
+    margin: 0 var(--spacing) var(--spacing) 0;
+    height: calc(100% - calc(var(--spacing) * 2 + 0.1rem)) !important;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    border-right: 2px solid var(--vscode-terminal-background, #171b2600) !important;
+}
+
+/* Floating-panels mode was adding its own margin on top of the one above; zeroing it
+   here lets the single margin declaration above be the only one in effect. */
+.monaco-workbench.floating-panels .part.panel {
+    margin: 0 !important;
+}
+
+/* Restores the top margin specifically, matched to the native rule's exact specificity
+   so it reliably wins (this is the one margin side we DO want, for the gap under the
+   editor tabs). */
+.monaco-workbench.floating-panels.panel-position-bottom:not(.nomaineditorarea).part.panel.bottom {
+    margin-top: var(--spacing) !important;
+}
+
+/* Legacy low-specificity fallback from the original theme file. Superseded by the rule
+   above in normal conditions; kept in case it still matters in an edge case (e.g. panel
+   docked elsewhere) — unconfirmed to be safe to remove. */
+.part.panel.basepanel.bottom.pane-composite-part {
+    margin-top: 0.1rem;
 }
 
 .monaco-workbench .part.panel.bottom .composite.title {
     border-top-style: none !important;
 }
 
+.terminal-group>.monaco-split-view2>.monaco-scrollable-element>.split-view-container>.split-view-view {
+    background: var(--vscode-terminal-background, #171b26) !important;
+}
+
+.terminal.xterm,
+.xterm-scrollable-element,
+.xterm-scrollable-element>.xterm-screen,
+.xterm-scrollable-element>.xterm-screen>.xterm-decoration-container {
+    height: 100% !important;
+}
+
+/* ============================================================
+   Panel separator lines (between stacked panes)
+   ============================================================ */
+.monaco-split-view2.separator-border.vertical>.monaco-scrollable-element>.split-view-container>.split-view-view:not(:first-child):before,
+.monaco-split-view2.separator-border>.monaco-scrollable-element>.split-view-container>.split-view-view:not(:first-child):before {
+    background: var(--vscode-panel-border, #252a38) !important;
+}
+
+/* ============================================================
+   Title bar
+   ============================================================ */
 .monaco-workbench .part.titlebar>.titlebar-container>.titlebar-center>.window-title>.command-center .action-item.command-center-center {
     border-radius: 5rem;
     border: none;
@@ -137,6 +366,15 @@ div.monaco-scrollable-element>div.split-view-container>div>div>div.pane-body {
     pointer-events: all;
 }
 
+.part.statusbar {
+    background-color: var(--vscode-statusBar-background, #252a38) !important;
+}
+
+/* ============================================================
+   Legacy left-side activity bar rules (kept from the original
+   file; apply only if the activity bar is ever put back in its
+   default left-hand position instead of the custom top row below)
+   ============================================================ */
 li.action-item.icon.checked,
 li.action-item.icon:hover {
     opacity: 1;
@@ -172,42 +410,12 @@ li.action-item.icon:hover {
     height: 44px !important;
 }
 
-div.pane-body>div>div>div>div.monaco-list-rows {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    width: 97% !important;
-    padding-bottom: 0.5rem;
-    /* height: calc(100% - 1rem) !important; */
-}
-
 li.action-item.icon {
     transition: all 0.15s;
     opacity: 0.2;
     margin-left: 0.3rem;
     padding-left: 0.05rem;
     margin-top: 0.2rem;
-}
-
-.monaco-pane-view .pane>.pane-header {
-    padding: 0 6px;
-}
-
-.monaco-workbench .part.sidebar>.title {
-    background: transparent;
-    padding: var(--spacing) 0 0 0;
-}
-
-#quickInput_list>div>div.monaco-list-rows {
-    width: calc(100% - 0.3rem) !important;
-}
-
-.monaco-workbench .part.sidebar {
-    margin: 0 0 0 var(--spacing);
-    border-radius: var(--border-radius);
-    overflow: hidden !important;
-    border-right: unset !important;
-    outline-color: unset !important;
-    height: calc(100% - var(--spacing)) !important;
-    box-shadow: none;
 }
 
 .monaco-workbench .pane-composite-part>.header-or-footer>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.checked .active-item-indicator:before,
@@ -217,6 +425,9 @@ li.action-item.icon {
     border-top-width: 1px;
 }
 
+/* ============================================================
+   Search view
+   ============================================================ */
 .search-view .search-widgets-container {
     margin: 0 calc(var(--border-radius) + 0.5rem) 0 var(--border-radius) !important;
 }
@@ -243,26 +454,29 @@ div .search-view .search-widget .replace-input {
     width: 93.3% !important;
 }
 
+.search-view .query-details.more h4 {
+    padding: 4px 0px 4px 1px !important;
+}
+
 .monaco-findInput .monaco-inputbox {
     border-radius: var(--border-radius) !important;
 }
 
+/* ============================================================
+   Command palette / quick input widget
+   ============================================================ */
 .quick-input-widget {
     transform: translateY(-50%) !important;
     top: 50% !important;
     z-index: 100;
     border: solid 2px var(--vscode-widget-border, #ffffff2d) !important;
     border-radius: 12px !important;
-    box-shadow: none !important;
     font-size: 24px !important;
     box-shadow: 0px 8px 20px var(--vscode-widget-shadow, #0000005c) !important;
 }
 
 .quick-input-widget .monaco-list-rows {
     font-size: 13px !important;
-}
-
-.quick-input-widget .monaco-list-rows {
     background: transparent !important;
 }
 
@@ -279,6 +493,11 @@ div .search-view .search-widget .replace-input {
     margin-bottom: 16px !important;
 }
 
+#quickInput_list>div>div.monaco-list-rows {
+    width: calc(100% - 0.3rem) !important;
+}
+
+/* Full-screen blur overlay shown behind the command palette */
 #command-blur {
     position: absolute !important;
     width: 100% !important;
@@ -292,9 +511,11 @@ div .search-view .search-widget .replace-input {
     z-index: 99 !important;
 }
 
+/* ============================================================
+   Misc widgets: notifications, buttons, breadcrumbs, webviews
+   ============================================================ */
 .notification-toast,
 .notification-toast>.notifications-list-container,
-.notification-toast>.notifications-list-container>.monaco-list,
 .notification-toast>.notifications-list-container>.monaco-list,
 .monaco-scrollable-element,
 .monaco-button,
@@ -302,6 +523,16 @@ div .search-view .search-widget .replace-input {
 .chat-input-container,
 .suggest-input-container {
     border-radius: var(--border-radius) !important;
+}
+
+.breadcrumbs-below-tabs {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    overflow: hidden;
+    padding: 5px 0 0 0;
+}
+
+.monaco-breadcrumbs {
+    font-size: 0.7rem;
 }
 
 div.monaco-workbench>div:has(iframe.webview.ready) {
@@ -312,88 +543,14 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     color: var(--vscode-input-placeholderForeground, #cccccc80) !important;
 }
 
-.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container {
-    /* margin: var(--border-radius) var(--border-radius) 0 var(--border-radius); */
-    margin: 0 !important;
-}
-
 .monaco-icon-label:after {
     font-size: 70% !important;
     margin: 1px 16px 0 5px !important;
 }
 
-.monaco-editor .find-widget {
-    top: 12px !important;
-    border-radius: var(--border-radius) !important;
-}
-
-.search-view .query-details.more h4 {
-    padding: 4px 0px 4px 1px !important;
-}
-
-.monaco-workbench .part.auxiliarybar>.title {
-    background-color: unset !important;
-}
-
-.monaco-workbench .part.auxiliarybar {
-    border: none !important;
-    border-radius: var(--border-radius) !important;
-    margin-left: var(--spacing) !important;
-    margin-right: var(--spacing) !important;
-    height: calc(100% - var(--spacing)) !important;
-    box-shadow: none;
-}
-
-.part.statusbar {
-    background-color: var(--vscode-statusBar-background, #252a38) !important;
-}
-
-.monaco-workbench .part.panel>.content {
-    height: calc(100% - 2rem) !important;
-}
-
-.monaco-workbench .part.panel {
-    margin: 0 var(--spacing) var(--spacing) 0;
-    height: calc(100% - calc(var(--spacing) * 2 + 0.1rem)) !important;
-    border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    box-shadow: none;
-    border-right: 2px solid var(--vscode-terminal-background, #171b2600) !important;
-}
-
-.terminal-group>.monaco-split-view2>.monaco-scrollable-element>.split-view-container>.split-view-view {
-    background: var(--vscode-terminal-background, #171b26) !important;
-}
-
-.terminal.xterm,
-.xterm-scrollable-element,
-.xterm-scrollable-element>.xterm-screen,
-.xterm-scrollable-element>.xterm-screen>.xterm-decoration-container {
-    height: 100% !important;
-}
-
-.monaco-editor {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    overflow: hidden;
-}
-
-.monaco-editor-background {
-    border-radius: var(--border-radius);
-}
-
-.part.panel.basepanel.bottom.pane-composite-part {
-    margin-top: 0.1rem;
-}
-
-.split-view-view.visible,
-.split-view-container {
-    background: var(--vscode-activityBar-background, #171b26) !important;
-}
-
-
-/* YJA - Modification pour les icônes */
-/* Modification de la taille des containeurs pour pouvoir redimenssioner les icônes */
+/* ============================================================
+   Custom activity bar (top position) — container sizing
+   ============================================================ */
 .modern-ui-tabs .pane-composite-part> :is(.title, .header-or-footer)> .composite-bar-container> .composite-bar> .monaco-action-bar .action-item.icon {
     flex: 0 0 36px !important;
     width: 36px !important;
@@ -402,13 +559,14 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     padding: 0 6px !important;
 }
 
-/* Règle 2 corrigée — icônes natives (codicons) */
+/* Native codicon (font-glyph) icons: size */
 .modern-ui .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .action-label.codicon {
     font-size: 24px !important;
     line-height: 24px !important;
+    color: #e08a3c !important;
 }
 
-/* Règle 3 corrigée — icônes d'extensions (masque SVG) */
+/* Extension icons (SVG mask) : size */
 .monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .action-label:not(.codicon) {
     width: 24px !important;
     height: 24px !important;
@@ -418,20 +576,14 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     background-position: center !important;
     -webkit-mask-position: center !important;
     mask-position: center !important;
-}
-
-/* YJA - Modification des couleurs des icônes et de leur arrière-plan */
-/* Couleur par défaut des icônes natives (codicons) — orange sourd */
-.modern-ui .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .action-label.codicon {
-    color: #e08a3c !important;
-}
-
-/* Couleur par défaut des icônes d'extensions (masque SVG) — même orange sourd */
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .action-label:not(.codicon) {
     background-color: #e08a3c !important;
 }
 
-/* Icône active (onglet sélectionné) ou survolée : orange vif */
+/* ============================================================
+   Custom activity bar (top position) — icon colors
+   ============================================================ */
+
+/* Active tab / selected / hovered icon: bright orange */
 .monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked .action-label.codicon,
 .monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon[aria-selected="true"] .action-label.codicon,
 .monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover .action-label.codicon {
@@ -444,30 +596,8 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     background-color: #ff6a00 !important;
 }
 
-/* Suppression de tout fond au survol/actif */
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon,
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover,
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked,
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon[aria-selected="true"] {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon {
-    --insert-border-color: transparent !important;
-}
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon,
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover,
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked {
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-/* La petite barre indicatrice sous l'onglet actif est aussi un fond coloré : on la neutralise */
-.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .active-item-indicator {
-    background: transparent !important;
-}
-
-/* Survol : orange vif — même spécificité que la règle native pour être sûr de gagner */
+/* Same hover color, matched to the native rule's exact specificity (:not(.checked):not(:active))
+   so it reliably wins on real mouse hover, not just when forced via devtools. */
 .modern-ui-tabs .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:not(.checked):not(:active):hover>.action-label.codicon {
     color: #ff6a00 !important;
 }
@@ -476,86 +606,45 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     background-color: #ff6a00 !important;
 }
 
-/* Neutraliser le fond de l'indicateur d'onglet actif — même spécificité que la règle native */
+/* ============================================================
+   Custom activity bar (top position) — remove native highlight
+   backgrounds so only the icon color itself changes on hover/active
+   ============================================================ */
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon[aria-selected="true"] {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon {
+    --insert-border-color: transparent !important;
+}
+
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon:hover,
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon.checked {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* The small underline/indicator behind the active icon is itself a colored background —
+   neutralize it too, matched to the native rule's exact specificity. */
+.monaco-workbench .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container>.composite-bar>.monaco-action-bar .action-item.icon .active-item-indicator {
+    background: transparent !important;
+}
+
 .modern-ui-tabs.monaco-workbench:not(.hc-black):not(.hc-light) .pane-composite-part>:is(.title,.header-or-footer)>.composite-bar-container:not(.dragged-over):not(.dragged-over-head):not(.dragged-over-tail)>.composite-bar>.monaco-action-bar .action-item.icon.checked:not(:active)>.active-item-indicator {
     background-color: transparent !important;
 }
 
-/* Retirer le bord disgracieux du panneau de l'éditeur */
-/* Supprime directement la marge du mode "floating panels", sans passer par la variable */
-.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-right,
-.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-top,
-.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-bottom,
-.monaco-workbench.floating-panels .monaco-grid-view .part.editor.floating-editor-outer-left {
-    margin: 0 !important;
-}
-.modern-ui .monaco-grid-view .part.editor:not(.modal-editor-part) {
-    border: none !important;
-    background-color: #171b26 !important;
-}
-.monaco-workbench .part.editor .shadow {
-    display: none !important;
-}
-
-.split-view-view.visible:has(>.part.editor) {
-    background: #171b26 !important;
-}
-
-.monaco-workbench .pane-composite-part>.header-or-footer {
-    background: #171b26 !important;
-}
-
-/* Espace visible (comme entre l'explorateur et l'éditeur) sous la rangée d'icônes */
-/* Fond clair de la barre latérale (visible dans l'espace entre les deux zones) */
-.modern-ui-tabs.monaco-workbench.floating-panels .part.sidebar {
-    background-color: var(--vscode-activityBar-background, #252a38) !important;
-}
-
-/* Rangée d'icônes : fond sombre, coins arrondis en bas, espace en dessous */
+/* ============================================================
+   Custom activity bar (top position) — background "pill" behind
+   the icon row, and the gap it leaves above the file tree
+   ============================================================ */
 .monaco-workbench .pane-composite-part>.header-or-footer {
     background: var(--vscode-sideBar-background, #171b26) !important;
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
     overflow: hidden !important;
-}
-
-/* Contenu de l'explorateur : fond sombre, coins arrondis en haut ET en bas */
-.monaco-workbench .part.sidebar>.content {
-    background: var(--vscode-sideBar-background, #171b26) !important;
-    border-radius: var(--border-radius) !important;
-    overflow: hidden !important;
-}
-
-/* Coins arrondis pour l'éditeur */
-.editor-container {
-    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
-    overflow: hidden !important;
-}
-
-.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-and-actions-container {
-    width: 100% !important;
-}
-
-/* Bug affichage à droite */
-#workbench\.parts\.editor>.content {
-    background-color: unset !important;
-    width: 100% !important;
-}
-.split-view-view.visible:has(>.part.editor) {
-    background: #252a38 !important;
-}
-
-/* Marge de base (haut, gauche, droite) du panneau */
-.monaco-workbench.floating-panels .part.panel {
-    margin: var(--spacing) var(--spacing) var(--spacing) var(--spacing) !important;
-}
-
-/* Cette règle plus spécifique ne fixe QUE le haut — on l'égale pour garder la cohérence */
-.monaco-workbench.floating-panels.panel-position-bottom:not(.nomaineditorarea).part.panel.bottom {
-    margin-top: var(--spacing) !important;
-}
-
-.monaco-workbench {
-    --modern-ui-floating-card-margin: var(--spacing) !important;
-    --modern-ui-floating-card-inner-margin: var(--spacing) !important;
-    --modern-ui-floating-card-outer-margin: var(--spacing) !important;
 }
