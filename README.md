@@ -2,9 +2,6 @@
 
 **Based on the great work of Sukarth (https://github.com/Sukarth/VS-Code-Modernized)**
 
-[![Version](https://vsmarketplacebadges.dev/version-short/sukarth.vscode-modernized.svg)](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized)
-[![Downloads](https://vsmarketplacebadges.dev/downloads-short/sukarth.vscode-modernized.svg)](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized)
-[![Rating](https://vsmarketplacebadges.dev/rating-short/sukarth.vscode-modernized.svg)](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized&ssr=false#review-details)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Yohan-Janolin/VS-Code-Modernized)
 
