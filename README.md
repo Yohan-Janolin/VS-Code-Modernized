@@ -3,10 +3,10 @@
 **Based on the great work of Sukarth (https://github.com/Sukarth/VS-Code-Modernized)**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Yohan-Janolin/VS-Code-Modernized)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Yohan-Janolin/VS-Code-Modernized-v2)
 
 **Elevate your Visual Studio Code experience!**
-VS Code Modernized applies a sleek, custom UI redesign, going beyond standard themes by offering customizable spacing, rounded corners, and a refined dark aesthetic. By applying custom CSS and JavaScript, it provides a more polished and visually appealing development environment.
+VS Code Modernized V2 applies a sleek, custom UI redesign, going beyond standard themes by offering customizable spacing, rounded corners, and a refined dark aesthetic. By applying custom CSS and JavaScript, it provides a more polished and visually appealing development environment.
 
 ## Features
 
@@ -14,32 +14,31 @@ VS Code Modernized applies a sleek, custom UI redesign, going beyond standard th
 - Includes the 'Deep Blue Modern' theme, which is applied by default for the best visual experience.
 - Enhances the command palette appearance and behavior to match the modern theme.
 - Provides commands to easily enable or disable the custom styles.
-- **Completely Open Source:** Available on GitHub under the MIT license. Feel free to explore the code, contribute, or report issues on our [GitHub repository](https://github.com/Yohan-Janolin/VS-Code-Modernized).
+- **Completely Open Source:** Available on GitHub under the MIT license. Feel free to explore the code, contribute, or report issues on our [GitHub repository](https://github.com/Yohan-Janolin/VS-Code-Modernized-v2).
 
 ## Preview
 
 Either let the extension do the work for you and set the Deep Blue Modern color theme automatically...
 
-![Screenshot 1](https://raw.githubusercontent.com/sukarth/VS-Code-Modernized/main/assets/vscodeModernizedThemeSwitchDemo.gif)
+![Screenshot 1](https://raw.githubusercontent.com/Yohan-Janolin/VS-Code-Modernized-v2/main/assets/vscodeModernizedv2ThemeSwitchDemo.gif)
 
 Or, disable the default behavior using the `vscode-modernized.autoApplyTheme` setting (see [configuration](#configuration)), so that the extension uses the theme of your choice.
 
-![Screenshot 2](https://raw.githubusercontent.com/sukarth/VS-Code-Modernized/main/assets/vscodeModernizedNoThemeSwitchDemo.gif)
+![Screenshot 2](https://raw.githubusercontent.com/Yohan-Janolin/VS-Code-Modernized-v2/main/assets/vscodeModernizedv2NoThemeSwitchDemo.gif)
 
 ## Installation
 
 **Note:** This extension works best with the included **'Deep Blue Modern'** theme. While the custom styles might work with other themes, the visual appearance might not be optimal.
 
 1.  **Prerequisites:**
-    - Ensure you have VS Code installed (tested with v1.99.0+, might also work on other versions).
+    - Ensure you have VS Code installed (tested with v1.138.0+, might also work on other versions).
     <!-- *   *(Optional but Recommended)* Install the [Geist Mono](https://vercel.com/font/mono) font for the intended look. -->
 2.  **Install the Extension:**
-    - **From VS Code Marketplace (Recommended):** Search for "VS Code Modernized" and install directly from VS Code, or use [this link](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized) to install the extension from the marketplace.
-    - **From VSIX (Manual):** Download the `.vsix` file from the [Releases](https://github.com/Yohan-Janolin/VS-Code-Modernized/releases) page. Open VS Code, go to the Extensions view (`Ctrl+Shift+X`), click the `...` menu, select "Install from VSIX...", and choose the downloaded file.
-    - **⚠️ Note:** If you uninstall this extension later, you MUST run the `VS Code Modernized: Remove Styles` command first. See the [important note](#%EF%B8%8F-important-note) section for details.
+    - **From VSIX (Manual):** Download the `.vsix` file from the [Releases](https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases) page. Open VS Code, go to the Extensions view (`Ctrl+Shift+X`), click the `...` menu, select "Install from VSIX...", and choose the downloaded file.
+    - **⚠️ Note:** If you uninstall this extension later, you MUST run the `VS Code Modernized V2: Remove Styles` command first. See the [important note](#%EF%B8%8F-important-note) section for details.
 3.  **Apply Styles:**
     - Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
-    - Use the command: `VS Code Modernized: Apply Styles` (type to search if necessary).
+    - Use the command: `VS Code Modernized V2: Apply Styles` (type to search if necessary).
     - If prompted, grant administrative privileges.
     - VS Code might ask to reload; if not, restart VS Code or manually reload the window (`Ctrl + R`).
     - Dismiss the "corrupt installation" warning if it appears (see [important note](#%EF%B8%8F-important-note) section below).
@@ -53,14 +52,14 @@ Use the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) to access the followin
 
 | Command                          | Title                             | Description                                                                                              |
 | :------------------------------- | :-------------------------------- | :------------------------------------------------------------------------------------------------------- |
-| `vscode-modernized.applyStyles`  | VS Code Modernized: Apply Styles  | Applies the custom styles to VS Code.                                                                    |
-| `vscode-modernized.removeStyles` | VS Code Modernized: Remove Styles | Removes the custom styles from VS Code, reverting to default. (Does not automatically revert the theme). | 
+| `vscode-modernized-v2.applyStyles`  | VS Code Modernized V2: Apply Styles  | Applies the custom styles to VS Code.                                                                    |
+| `vscode-modernized-v2.removeStyles` | VS Code Modernized V2: Remove Styles | Removes the custom styles from VS Code, reverting to default. (Does not automatically revert the theme). | 
 
 ### Reverting Changes
 
 To remove the custom styles completely:
 
-1.  Run the command `VS Code Modernized: Remove Styles`.
+1.  Run the command `VS Code Modernized V2: Remove Styles`.
 2.  If prompted, grant administrative privileges.
 3.  Reload or restart VS Code.
 
@@ -68,24 +67,24 @@ To remove the custom styles completely:
 
 This extension provides the following configuration setting (accessible via `File > Preferences > Settings` and searching for `VS Code Modernized`):
 
-- **`vscode-modernized.autoApplyTheme`**: (Default: `true`)
+- **`vscode-modernized-v2.autoApplyTheme`**: (Default: `true`)
 
   - When enabled, the extension automatically applies the 'Deep Blue Modern' theme when you run the `Apply Styles` command.
   - Disable this if you want to use the custom UI styles with your own preferred color theme.
 
-- **`vscode-modernized.ui.spacing`**: (Default: `0.35rem`)
+- **`vscode-modernized-v2.ui.spacing`**: (Default: `0.35rem`)
 
   - Controls the general spacing used for margins and padding around UI elements (e.g., sidebar, editor group).
   - Use positive CSS units like `rem`, `px`, `em` (e.g., '0.5rem', '10px').
   - **Warning:** Setting extreme values might negatively impact usability or make VS Code difficult to use.
 
-- **`vscode-modernized.ui.borderRadius`**: (Default: `0.5rem`)
+- **`vscode-modernized-v2.ui.borderRadius`**: (Default: `0.5rem`)
 
   - Controls the roundness of corners for elements like tabs, sidebar, panels, buttons, and inputs.
   - Use positive CSS units like `rem`, `px`, `em` (e.g., '0.5rem', '8px').
   - **Warning:** Setting extreme values might negatively impact usability or make VS Code difficult to use.
 
-- **`vscode-modernized.ui.tabSpacing`**: (Default: `0.2rem`)
+- **`vscode-modernized-v2.ui.tabSpacing`**: (Default: `0.2rem`)
   - Controls the spacing between editor tabs.
   - Use positive CSS units like `rem`, `px`, `em` (e.g., '0.2rem', '4px').
   - **Warning:** Setting extreme values might negatively impact usability or make VS Code difficult to use.
@@ -96,7 +95,7 @@ This extension modifies VS Code's files (mainly `workbench.html`) to apply/injec
 
 - After applying the styles, VS Code will likely show a **"Your Code installation appears to be corrupt. Please reinstall."** warning. This is expected because a core file was modified. You can safely dismiss this warning by clicking the gear icon on the notification and selecting "Don't Show Again".
 - Due to this, the extension may require **administrative privileges** (sudo/run as administrator) to write the necessary changes to the VS Code installation directory.
-- **⚠️ IMPORTANT:** Before uninstalling or disabling this extension, you MUST run the `VS Code Modernized: Remove Styles` command to revert the modifications made to VS Code's files. Failing to do so will leave the styles enabled in VS Code until you re-install the extension and disable/remove them.
+- **⚠️ IMPORTANT:** Before uninstalling or disabling this extension, you MUST run the `VS Code Modernized V2: Remove Styles` command to revert the modifications made to VS Code's files. Failing to do so will leave the styles enabled in VS Code until you re-install the extension and disable/remove them.
 
 ## Troubleshooting / FAQ
 
@@ -105,15 +104,15 @@ This extension modifies VS Code's files (mainly `workbench.html`) to apply/injec
 - **Q: Styles didn't apply after running the command.**
   - A: Ensure you granted administrative privileges if prompted. Try restarting VS Code completely or reloading the window (`Ctrl + R`).
 - **Q: The extension broke after a VS Code update.**
-  - A: This is possible, as the styles injection method is not officially supported. Try running `VS Code Modernized: Remove Styles`, then `VS Code Modernized: Apply Styles` again. If it still fails, please [open an issue](https://github.com/Yohan-Janolin/VS-Code-Modernized/issues).
+  - A: This is possible, as the styles injection method is not officially supported. Try running `VS Code Modernized V2: Remove Styles`, then `VS Code Modernized V2: Apply Styles` again. If it still fails, please [open an issue](https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/issues).
 
 ## Contributing
 
-Contributions, feedback, and bug reports are welcome! Please feel free to open an issue, provide feature suggestions/improvements, or submit a pull request on the [GitHub repository](https://github.com/Yohan-Janolin/VS-Code-Modernized).
+Contributions, feedback, and bug reports are welcome! Please feel free to open an issue, provide feature suggestions/improvements, or submit a pull request on the [GitHub repository](https://github.com/Yohan-Janolin/VS-Code-Modernized-v2).
 
 ### Bug Reports & Feature Requests
 
-- Use the [GitHub Issues](https://github.com/Yohan-Janolin/VS-Code-Modernized/issues) page.
+- Use the [GitHub Issues](https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/issues) page.
 - For bugs, please include:
   - Your VS Code version (`Help > About`).
   - Your Operating System.
@@ -123,8 +122,8 @@ Contributions, feedback, and bug reports are welcome! Please feel free to open a
 
 ### Development
 
-1.  Clone the repository: `git clone https://github.com/Yohan-Janolin/VS-Code-Modernized.git`
-2.  Navigate to the directory: `cd VS-Code-Modernized`
+1.  Clone the repository: `git clone https://github.com/Yohan-Janolin/VS-Code-Modernized-v2.git`
+2.  Navigate to the directory: `cd VS-Code-Modernized-v2`
 3.  Install dependencies: `npm install`
 4.  Open the project in VS Code.
 5.  Press `F5` to start a new Extension Development Host window with the extension loaded.
@@ -135,16 +134,6 @@ Contributions, feedback, and bug reports are welcome! Please feel free to open a
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## 💖 Support
-
-If this project saves you time, consider supporting my work, as it keeps these tools free, open source, and maintained:
-
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/Yohan-Janolin)
-
-Can't donate? Starring the repo ⭐, reporting bugs, and sharing the project help just as much!
-
----
 
 Original release built with ❤️ by Sukarth Acharya
 

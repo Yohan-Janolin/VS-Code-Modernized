@@ -2,13 +2,13 @@ import * as vscode from 'vscode';
 import * as sudo from '@vscode/sudo-prompt';
 
 /** Unique identifier for the extension. */
-const EXTENSION_ID = 'vscode-modernized';
+const EXTENSION_ID = 'vscode-modernized-v2';
 /** Start marker for injected content in workbench.html. */
 const INJECTION_MARKER_START = `<!-- ${EXTENSION_ID}-start -->`;
 /** End marker for injected content in workbench.html. */
 const INJECTION_MARKER_END = `<!-- ${EXTENSION_ID}-end -->`;
 /** Configuration section name in settings.json. */
-const CONFIG_SECTION = 'vscode-modernized';
+const CONFIG_SECTION = 'vscode-modernized-v2';
 /** The specific theme ID this extension applies. */
 const THEME_ID = 'Deep Blue Modern';
 /** Key used in global state to store the user's theme before applying ours. */
@@ -434,7 +434,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
         if (!storedVersion) {
             // First time installation message
-            vscode.window.showInformationMessage(`VS Code Modernized installed! Run 'VS Code Modernized: Apply Styles' from the Command Palette to activate.`);
+            vscode.window.showInformationMessage(`VS Code Modernized V2 installed! Run 'VS Code Modernized V2: Apply Styles' from the Command Palette to activate.`);
         } else if (stylesAreApplied) {
             // Extension updated and styles were previously applied, re-apply them automatically
             console.log(`Re-applying styles after update.`);

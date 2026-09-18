@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yohan-Janolin/VS-Code-Modernized"
+    "url": "https://github.com/Yohan-Janolin/VS-Code-Modernized-V2"
   },
   "sponsor": {
     "url": "https://github.com/sponsors/Yohan-Janolin"
@@ -30,12 +30,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-modernized.applyStyles",
-        "title": "VS Code Modernized: Apply Styles"
+        "command": "vscode-modernized-v2.applyStyles",
+        "title": "VS Code Modernized V2: Apply Styles"
       },
       {
-        "command": "vscode-modernized.removeStyles",
-        "title": "VS Code Modernized: Remove Styles"
+        "command": "vscode-modernized-v2.removeStyles",
+        "title": "VS Code Modernized V2: Remove Styles"
       }
     ],
     "themes": [
@@ -46,28 +46,28 @@
       }
     ],
     "configuration": {
-      "title": "VS Code Modernized",
+      "title": "VS Code Modernized V2",
       "properties": {
-        "vscode-modernized.autoApplyTheme": {
+        "vscode-modernized-v2.autoApplyTheme": {
           "type": "boolean",
           "default": true,
           "description": "Automatically apply the 'Deep Blue Modern' theme when enabling styles. Disable this if you prefer to use your own theme."
         },
-        "vscode-modernized.ui.spacing": {
+        "vscode-modernized-v2.ui.spacing": {
           "type": "string",
           "default": "0.35rem",
           "description": "Controls the general spacing used for margins and padding around UI elements (e.g., sidebar, editor group). Use positive CSS units like rem, px, em (e.g., '0.5rem', '10px'). Warning: Setting extreme values might negatively impact usability.",
           "pattern": "^\\d+(\\.\\d+)?(rem|em|px|%|vh|vw|vmin|vmax)$",
           "patternErrorMessage": "Please enter a valid positive CSS unit (e.g., '0.5rem', '8px')."
         },
-        "vscode-modernized.ui.borderRadius": {
+        "vscode-modernized-v2.ui.borderRadius": {
           "type": "string",
           "default": "0.5rem",
           "description": "Controls the roundness of corners for elements like tabs, sidebar, panels, and inputs. Use positive CSS units like rem, px, em (e.g., '0.5rem', '8px'). Warning: Setting extreme values might negatively impact usability.",
           "pattern": "^\\d+(\\.\\d+)?(rem|em|px|%|vh|vw|vmin|vmax)$",
           "patternErrorMessage": "Please enter a valid positive CSS unit (e.g., '0.5rem', '8px')."
         },
-        "vscode-modernized.ui.tabSpacing": {
+        "vscode-modernized-v2.ui.tabSpacing": {
           "type": "string",
           "default": "0.2rem",
           "description": "Controls the spacing between editor tabs. Use positive CSS units like rem, px, em (e.g., '0.2rem', '4px'). Warning: Setting extreme values might negatively impact usability.",
