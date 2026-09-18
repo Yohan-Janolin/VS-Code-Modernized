@@ -15,6 +15,8 @@ const THEME_ID = 'Deep Blue Modern';
 const PREVIOUS_THEME_KEY = 'previousTheme';
 /** Key used in global state to track if styles have been successfully applied. */
 const APPLIED_STATE_KEY = 'stylesApplied';
+/** Key: timestamp (ms) when styles were first successfully applied. */
+const FIRST_APPLIED_AT_KEY = 'firstAppliedAt';
 
 /** Cached path to the VS Code workbench HTML file. */
 let workbenchHtmlPath: vscode.Uri | undefined;
