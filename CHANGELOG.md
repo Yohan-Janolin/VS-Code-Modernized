@@ -4,7 +4,21 @@ All notable changes to the VS Code Modernized extension will be documented in th
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v2.1.2] - 2026-09-17
+
+## [v2.2.0] - 2026-09-18
+
+### Correction
+
+- Removed everything related to donation or support
+
+## [v2.1.0] - 2026-09-13
+
+### Bug fixes
+
+- Multiples visual bug fixes
+
+
+## [v2.0.0] - 2026-09-10
 
 ### Rebuild - Initial v2 release
 
@@ -23,4 +37,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
 [Releases]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/
-[v2.1.2]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/tag/v2.1.2
+[v2.2.0]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/tag/v2.2.0
