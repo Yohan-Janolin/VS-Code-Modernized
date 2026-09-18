@@ -1,4 +1,6 @@
-# VS Code Modernized ✨
+# VS Code Modernized V2 ✨
+
+**Based on the great work of Sukarth (https://github.com/Sukarth/VS-Code-Modernized)**
 
 [![Version](https://vsmarketplacebadges.dev/version-short/sukarth.vscode-modernized.svg)](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized)
 [![Downloads](https://vsmarketplacebadges.dev/downloads-short/sukarth.vscode-modernized.svg)](https://marketplace.visualstudio.com/items?itemName=sukarth.vscode-modernized)
