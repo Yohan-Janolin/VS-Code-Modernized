@@ -22,5 +22,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Correction of the hover effect on the files' tabs
 
 
-[Releases]: https://github.com/Yohan-Janolin/VS-Code-Modernized/releases/
-[v2.1.2]: https://github.com/Yohan-Janolin/VS-Code-Modernized/releases/tag/v2.1.2
+[Releases]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/
+[v2.1.2]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/tag/v2.1.2

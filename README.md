@@ -22,7 +22,7 @@ Either let the extension do the work for you and set the Deep Blue Modern color 
 
 ![Screenshot 1](https://raw.githubusercontent.com/Yohan-Janolin/VS-Code-Modernized-v2/main/assets/vscodeModernizedv2ThemeSwitchDemo.gif)
 
-Or, disable the default behavior using the `vscode-modernized.autoApplyTheme` setting (see [configuration](#configuration)), so that the extension uses the theme of your choice.
+Or, disable the default behavior using the `vscode-modernized-v2.autoApplyTheme` setting (see [configuration](#configuration)), so that the extension uses the theme of your choice.
 
 ![Screenshot 2](https://raw.githubusercontent.com/Yohan-Janolin/VS-Code-Modernized-v2/main/assets/vscodeModernizedv2NoThemeSwitchDemo.gif)
 
@@ -65,7 +65,7 @@ To remove the custom styles completely:
 
 ## Configuration
 
-This extension provides the following configuration setting (accessible via `File > Preferences > Settings` and searching for `VS Code Modernized`):
+This extension provides the following configuration setting (accessible via `File > Preferences > Settings` and searching for `VS Code Modernized V2`):
 
 - **`vscode-modernized-v2.autoApplyTheme`**: (Default: `true`)
 
