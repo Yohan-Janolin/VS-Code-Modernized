@@ -100,7 +100,7 @@ async function writeFileWithPermissions(targetUri: vscode.Uri, content: string):
 
             // Execute the move command with elevated privileges using sudo-prompt
             return await new Promise<boolean>((resolve) => {
-                sudo.exec(command, { name: 'VS Code Modernized Extension' }, async (sudoError?: Error | string) => {
+                sudo.exec(command, { name: 'VS Code Modernized V2 Extension' }, async (sudoError?: Error | string) => {
                     if (sudoError) {
                         console.error(`Sudo command failed: ${sudoError}`);
                         // Attempt to clean up the temporary file even if sudo failed
@@ -512,7 +512,7 @@ async function maybeShowSponsorPrompt(context: vscode.ExtensionContext): Promise
     const laterAction = 'Later';
     const neverAction = "Don't show again";
     const choice = await vscode.window.showInformationMessage(
-        'Enjoying VS Code Modernized? It\'s free and open source: consider sponsoring to support development!',
+        'Enjoying VS Code V2 Modernized? It\'s free and open source: consider sponsoring to support development!',
         sponsorAction,
         laterAction,
         neverAction
