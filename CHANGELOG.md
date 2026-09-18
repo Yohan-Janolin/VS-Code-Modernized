@@ -38,3 +38,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 [Releases]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/
 [v2.2.0]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/tag/v2.2.0
+[v2.1.0]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/tag/v2.1.0
+[v2.0.0]: https://github.com/Yohan-Janolin/VS-Code-Modernized-v2/releases/tag/v2.0.0
